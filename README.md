@@ -1,4 +1,4 @@
-# Showpad Demo — Gateway & API
+# Rate Limiter — Gateway & API
 
 This is a simple example project that implements an API service and a gateway with rate-limiting. 
 
@@ -107,7 +107,7 @@ This implementation has a few advantages:
 ## Deployment
 The app can be accessed on the following URL:
   ```sh
-  https://showpad-demo-mftq.onrender.com
+  https://rlimit-demo-mftq.onrender.com
   ```
 
   ⚠️ Note: This app is deployed on Render's free tier. You may experience long delays or cold starts when the app hasn't been accessed recently.

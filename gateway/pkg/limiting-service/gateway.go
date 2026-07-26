@@ -173,8 +173,14 @@ func (l *Limiter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
+		respBody, err := json.Marshal(userQuotaResponse{UserId: victimId, Rate: data.Rate})
+		if err != nil {
+			http.Error(w, respInternalServer, http.StatusInternalServerError)
+			return
+		}
+
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprintf(w, "{userId: %s, rate: %.3f}", victimId, data.Rate)
+		w.Write(respBody)
 		return
 	}
 

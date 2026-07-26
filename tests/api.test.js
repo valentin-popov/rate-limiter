@@ -23,14 +23,14 @@ describe("Rate Limiter tests", () => {
 				const res = await client.get(`${baseURL}/foo`);
 				expect(res.status).toBe(200);
 				expect(res.data).toBeTruthy();
-				expect(res.data).toEqual("{success: true}");
+				expect(res.data).toEqual({ success: true });
 
 			}
 
 			const res = await client.get(`${baseURL}/foo`);
 			expect(res.status).toBe(429);
 			expect(res.data).toBeTruthy();
-			expect(res.data).toContain("rate limit exceeded");
+			expect(res.data).toEqual({ error: "rate limit exceeded" });
 			// sleep 5 seconds to refill the bucket
 			await new Promise(r => setTimeout(r, 5000));
 
@@ -52,21 +52,21 @@ describe("Rate Limiter tests", () => {
 				const res = await client.get(`${baseURL}/foo`);
 				expect(res.status).toBe(200);
 				expect(res.data).toBeTruthy();
-				expect(res.data).toEqual("{success: true}");
+				expect(res.data).toEqual({ success: true });
 
 			}
 
 			let res = await client.get(`${baseURL}/foo`);
 			expect(res.status).toBe(429);
 			expect(res.data).toBeTruthy();
-			expect(res.data).toContain("rate limit exceeded");
+			expect(res.data).toEqual({ error: "rate limit exceeded" });
 
 			await new Promise(r => setTimeout(r, 1000));
 
 			res = await client.get(`${baseURL}/foo`);
 			expect(res.status).toBe(200);
 			expect(res.data).toBeTruthy();
-			expect(res.data).toEqual("{success: true}");
+			expect(res.data).toEqual({ success: true });
 			await new Promise(r => setTimeout(r, 5000));
 
 		}
@@ -87,7 +87,7 @@ describe("Rate Limiter tests", () => {
 				const res = await client2.get(`${baseURL}/foo`);
 				expect(res.status).toBe(200);
 				expect(res.data).toBeTruthy();
-				expect(res.data).toEqual("{success: true}");
+				expect(res.data).toEqual({ success: true });
 
 			}
 
@@ -104,7 +104,7 @@ describe("Rate Limiter tests", () => {
 				const res = await client1.get(`${baseURL}/foo`);
 				expect(res.status).toBe(200);
 				expect(res.data).toBeTruthy();
-				expect(res.data).toEqual("{success: true}");
+				expect(res.data).toEqual({ success: true });
 
 			}
 
@@ -128,7 +128,7 @@ describe("Rate Limiter tests", () => {
 				const res = await client1.get(`${baseURL}/foo`);
 				expect(res.status).toBe(200);
 				expect(res.data).toBeTruthy();
-				expect(res.data).toEqual("{success: true}");
+				expect(res.data).toEqual({ success: true });
 
 			}
 
